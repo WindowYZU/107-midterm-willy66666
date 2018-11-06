@@ -102,14 +102,8 @@ public class NewJFrame extends javax.swing.JFrame {
             
             jButton1.setEnabled(false);
             //從 combobox 抓出被選到的項目，存到變數裡
-            String value =(String) jComboBox1.getSelectedItem();
-            for(int i =0;i<jComboBox1.getItemCount();i++)
-               
-                if (value.startsWith(value)){
-                    jComboBox1.setSelectedIndex(i);
-                    break;
-                
-                } 
+            DefaultListModel model = (DefaultListModel) jButton1.getModel();
+            model.addElement(jComboBox1.getSelectedItem());
             
             
             String selectedItem="";
