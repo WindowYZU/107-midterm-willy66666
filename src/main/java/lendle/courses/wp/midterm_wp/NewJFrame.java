@@ -123,6 +123,7 @@ public class NewJFrame extends javax.swing.JFrame {
                         progress.setVisible(false);
                         jButton1.setEnabled(true);
                         //將下載好的項目加入到 jList 裡面
+                        jList1.getSelectedIndex();
                         
                         ////////////////////////////
                         SwingUtilities.invokeLater(new Runnable() {
