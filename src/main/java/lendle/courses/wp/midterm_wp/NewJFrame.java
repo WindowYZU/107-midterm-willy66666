@@ -15,6 +15,9 @@ import java.util.logging.Logger;
 import javafx.scene.AccessibleAttribute;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.ProgressMonitor;
 import javax.swing.SwingUtilities;
 
@@ -45,17 +48,14 @@ public class NewJFrame extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "https://mbtskoudsalg.com/images/png-image-7.png", "http://pngimg.com/uploads/eagle/eagle_PNG1227.png", "https://upload.wikimedia.org/wikipedia/commons/4/4a/Photographer_Barnstar.png", "http://pluspng.com/img-png/bulb-hd-png-light-bulb-png-transparent-image-2048.png", " " }));
 
         jScrollPane1.setViewportView(jList1);
-
-        jScrollPane2.setViewportView(jLabel2);
 
         jButton1.setText("Download");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -72,11 +72,11 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, 0, 653, Short.MAX_VALUE)
+                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -87,7 +87,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -99,8 +99,19 @@ public class NewJFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
+            
             jButton1.setEnabled(false);
             //從 combobox 抓出被選到的項目，存到變數裡
+            String value =(String) jComboBox1.getSelectedItem();
+            for(int i =0;i<jComboBox1.getItemCount();i++)
+               
+                if (value.startsWith(value)){
+                    jComboBox1.setSelectedIndex(i);
+                    break;
+                
+                } 
+            
+            
             String selectedItem="";
             /////////////////////////////////////
             URL url = new URL(selectedItem);
@@ -125,7 +136,12 @@ public class NewJFrame extends javax.swing.JFrame {
                             public void run() {
                                 try {
                                     URL fileURL=tempFile.toURI().toURL();
+                                    
                                     //利用 fileURL 將 image icon 加到 jLabel2
+                                    ImageIcon icon = new ImageIcon(new URL("fileURL"));
+                                    ImageIcon icon2 = new ImageIcon(icon.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH));
+                                    jLabel2.setIcon(icon2);
+                                    jLabel2.updateUI();
                                     ////////////////////////////////////////
                                     jList1.updateUI();
                                 } catch (Exception ex) {
@@ -150,13 +166,13 @@ public class NewJFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws MalformedURLException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -172,6 +188,18 @@ public class NewJFrame extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+       
+        JFrame frame = new JFrame();
+        ImageIcon icon = new ImageIcon(new URL("https://mbtskoudsalg.com/images/png-image-7.png"));
+        ImageIcon icon2 = new ImageIcon(icon.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH));
+        JLabel jLabel2 = new JLabel();
+        
+        JButton jButton2= new JButton();
+        jButton2.setIcon(icon2);
+        frame.add(jButton2);
+               
+         
+        frame.setVisible(true);
         //</editor-fold>
 
         /* Create and display the form */
@@ -188,6 +216,5 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
